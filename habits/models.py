@@ -4,10 +4,10 @@ from users.models import User
 
 
 class Habit(models.Model):
-    user = models.ForeignKey(
+    owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name='Создатель привычки'
+        verbose_name='Владелец привычки'
     )
     place = models.CharField(
         max_length=100,
