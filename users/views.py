@@ -1,7 +1,7 @@
 from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from .serializaers import UserSerializer, UserCreateSerializer
+from .serializers import UserSerializer, UserCreateSerializer
 from .models import User
 
 
