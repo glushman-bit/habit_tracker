@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
 from habits.models import Habit
+from .validators import PleasantHabitValidator, PeriodicityValidator, DurationHabitValidator, RelatedHabitIsPleasantValidator, RewardAndRelatedHabitValidator
 
 
 class HabitSerializer(ModelSerializer):
@@ -8,6 +9,14 @@ class HabitSerializer(ModelSerializer):
     class Meta:
         model = Habit
         fields = '__all__'
+        read_only_fields = ('owner',)
+        validators = [
+            PleasantHabitValidator(),
+            PeriodicityValidator(field='periodicity',),
+            DurationHabitValidator(field='duration',),
+            RelatedHabitIsPleasantValidator(),
+            RewardAndRelatedHabitValidator(),
+        ]
 
 
 class HabitPublicSerializer(ModelSerializer):
