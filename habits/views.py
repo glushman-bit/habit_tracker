@@ -1,16 +1,23 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
+from habits.paginators import HabitPaginator
+from habits.permissions import IsOwner
 from habits.serializers import HabitSerializer
 
 
 class HabitsListAPIView(ListAPIView):
     """Класс вывода списка привычек."""
 
-    queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    permission_classes = []
-    # pagination_class = Pass
+    permission_classes = [IsAuthenticated]
+    pagination_class = HabitPaginator
+
+    def get_queryset(self):
+        """Просмотр пользователем только своих привычек."""
+
+        return Habit.objects.filter(owner=self.request.user)
 
 
 class HabitCreateAPIView(CreateAPIView):
@@ -18,12 +25,12 @@ class HabitCreateAPIView(CreateAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         """Автоматически определяем владельца при создании."""
 
-        serializer.save(user=self.request.user)
+        serializer.save(owner=self.request.user)
 
 
 class HabitDetailAPIView(RetrieveAPIView):
@@ -31,7 +38,7 @@ class HabitDetailAPIView(RetrieveAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class HabitUpdateAPIView(UpdateAPIView):
@@ -39,7 +46,7 @@ class HabitUpdateAPIView(UpdateAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class HabitDeleteAPIView(DestroyAPIView):
@@ -47,4 +54,4 @@ class HabitDeleteAPIView(DestroyAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsOwner]
