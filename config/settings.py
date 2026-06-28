@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 
 from dotenv import load_dotenv
+from datetime import timedelta
 
 load_dotenv()
 
@@ -71,7 +72,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # настройки REST_FRAMEWORK для фильтрации, авторизации, разрешений
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
@@ -84,10 +84,10 @@ REST_FRAMEWORK = {
     # 'PAGE_SIZE': 10,
 }
 
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-# }
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
