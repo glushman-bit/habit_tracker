@@ -9,22 +9,22 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(
         unique=True,
-        verbose_name='Email пользователя',
-        help_text='Укажите Email',
+        verbose_name="Email пользователя",
+        help_text="Укажите Email",
     )
     phone_number = PhoneNumberField(
         unique=True,
         blank=True,
         null=True,
-        verbose_name='Phone Number',
-        help_text='Укажите номер телефона'
+        verbose_name="Phone Number",
+        help_text="Укажите номер телефона"
     )
     avatar = models.ImageField(
-        upload_to='avatars/',
+        upload_to="avatars/",
         null=True,
         blank=True,
-        default='avatars/default.jpg',
-        verbose_name='Загрузите аватар'
+        default="avatars/default.jpg",
+        verbose_name="Загрузите аватар"
     )
     country = CountryField(
         blank_label="Country",
@@ -51,8 +51,12 @@ class User(AbstractUser):
         verbose_name="Дата создания",
     )
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
 
     def __str__(self):
         return self.email

@@ -51,5 +51,9 @@ class Habit(models.Model):
         verbose_name='Признак публичности'
     )
 
+    class Meta:
+        verbose_name = "Привычка"
+        verbose_name_plural = "Привычки"
+
     def __str__(self):
         return f'{self.user}: в {self.time} выполняет {self.action} в {self.place}'
