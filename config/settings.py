@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -29,6 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'phonenumber_field',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'django_countries',
 
     'habits',
     'users',
@@ -63,6 +69,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# настройки REST_FRAMEWORK для фильтрации, авторизации, разрешений
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.AllowAny', # Доступ всем
+        'rest_framework.permissions.IsAuthenticated', # Доступ только авторизованным
+    ],
+    # Пагинация на уровне проекта
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 10,
+}
+
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+# }
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
@@ -97,15 +122,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+FIXTURE_DIRS = [BASE_DIR / 'fixtures']
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -114,3 +141,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'users.User'
+
