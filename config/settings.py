@@ -158,9 +158,12 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-# CELERY_BEAT_SCHEDULE = {
-#     "check_user_is_active": {
-#         "task": "users.tasks.check_user_is_active",
-#         "schedule": crontab(hour=2, minute=0),
-#     },
-# }
+CELERY_BEAT_SCHEDULE = {
+    "send_habit_reminders": {
+        "task": "habits.tasks.send_habit_reminders",
+        "schedule": timedelta(minutes=1),
+    },
+}
+
+TELEGRAM_URL = os.getenv("TELEGRAM_URL")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
