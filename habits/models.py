@@ -13,10 +13,10 @@ class Habit(models.Model):
         max_length=100,
         verbose_name='Место выполнения привычки'
     )
-    time = models.TimeField(
+    date_time = models.DateTimeField(
         null=True,
         blank=True,
-        verbose_name='Время выполнения привычки'
+        verbose_name='Дата и время выполнения привычки'
     )
     action = models.CharField(
         max_length=100,
