@@ -44,4 +44,4 @@ class HabitPublicSerializer(ModelSerializer):
 
     def get_full_sentence(self, obj):
 
-        return f"Я буду {obj.action} в {obj.date_time.strftime('%H:%M')} в {obj.place}"
+        return f"Я буду {obj.action} в {obj.date_time.strftime('%H:%M')} {obj.place}"

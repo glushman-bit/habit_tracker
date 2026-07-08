@@ -1,0 +1,114 @@
+[
+{
+    "model": "habits.habit",
+    "pk": 1,
+    "fields": {
+        "owner": 1,
+        "place": "на кухне",
+        "date_time": "2026-07-07T15:00:00Z",
+        "action": "выпивать стакан воды",
+        "is_pleasant": false,
+        "related_habit": null,
+        "periodicity": 1,
+        "reward": "съесть дольку темного шоколада",
+        "duration": 30,
+        "is_public": true
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 2,
+    "fields": {
+        "owner": 1,
+        "place": "офисе у стола",
+        "date_time": "2026-07-10T13:39:00Z",
+        "action": "делать 15 приседаний",
+        "is_pleasant": false,
+        "related_habit": null,
+        "periodicity": 3,
+        "reward": null,
+        "duration": 45,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 3,
+    "fields": {
+        "owner": 1,
+        "place": "на диване",
+        "date_time": "2026-07-07T15:00:00Z",
+        "action": "слушать любимый музыкальный трек в наушниках",
+        "is_pleasant": true,
+        "related_habit": null,
+        "periodicity": 1,
+        "reward": null,
+        "duration": 120,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 4,
+    "fields": {
+        "owner": 1,
+        "place": "в кабинете",
+        "date_time": "2026-07-04T03:00:00Z",
+        "action": "протирать пыль с рабочего стола",
+        "is_pleasant": false,
+        "related_habit": 3,
+        "periodicity": 1,
+        "reward": null,
+        "duration": 90,
+        "is_public": true
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 5,
+    "fields": {
+        "owner": 1,
+        "place": "в офисе",
+        "date_time": "2026-07-06T09:00:00Z",
+        "action": "делать расслабляющую зарядку для глаз",
+        "is_pleasant": true,
+        "related_habit": null,
+        "periodicity": 2,
+        "reward": null,
+        "duration": 90,
+        "is_public": true
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 8,
+    "fields": {
+        "owner": 1,
+        "place": "на работе",
+        "date_time": "2026-07-08T14:41:00Z",
+        "action": "мыть руки после работы",
+        "is_pleasant": false,
+        "related_habit": null,
+        "periodicity": 1,
+        "reward": null,
+        "duration": 30,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 17,
+    "fields": {
+        "owner": 3,
+        "place": "дома",
+        "date_time": "2026-07-07T22:25:14Z",
+        "action": "идти спать",
+        "is_pleasant": false,
+        "related_habit": null,
+        "periodicity": 1,
+        "reward": null,
+        "duration": 90,
+        "is_public": true
+    }
+}
+]
