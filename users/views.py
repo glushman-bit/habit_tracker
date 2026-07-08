@@ -22,7 +22,11 @@ class UserViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     def get_serializer_class(self):
-        """Переопределение сериалайзера для просмотра профиля пользователя."""
+        """Переопределение сериалайзера для просмотра профиля пользователя.
+            Добавлена защита от ошибки построения схемы Swagger."""
+
+        if getattr(self, 'swagger_fake_view', False):
+            return UserSerializer
 
         if self.action == 'retrieve':
             user = self.get_object()
