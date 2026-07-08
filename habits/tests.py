@@ -1,13 +1,18 @@
+from django.test import SimpleTestCase, TestCase
+from django.urls import reverse
+from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.test import APITestCase
-from django.urls import reverse
-from django.test import SimpleTestCase, TestCase
-from rest_framework import status
+
 from habits.models import Habit
+from habits.validators import (
+    DurationHabitValidator,
+    PeriodicityValidator,
+    PleasantHabitValidator,
+    RelatedHabitIsPleasantValidator,
+    RewardAndRelatedHabitValidator,
+)
 from users.models import User
-from habits.validators import (PleasantHabitValidator, PeriodicityValidator,
-                               DurationHabitValidator, RelatedHabitIsPleasantValidator,
-                               RewardAndRelatedHabitValidator)
 
 
 class HabitsTestsCase(APITestCase):
@@ -150,13 +155,15 @@ class HabitsTestsCase(APITestCase):
             "place": self.habit1.place,
             "date_time": self.habit1.date_time,
             "action": self.habit1.action,
-            "is_public": True
+            "is_public": True,
         }
 
         response = self.client.get(url, data)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.json()['results'][0]['full_sentence'], "Я буду test_action_pleasant в 20:00 в test_place")
+        self.assertEqual(
+            response.json()['results'][0]['full_sentence'], "Я буду test_action_pleasant в 20:00 в test_place"
+        )
 
 
 class ValidatorTestCase(TestCase):

@@ -1,10 +1,12 @@
+from django_countries.serializers import CountryFieldMixin
 from rest_framework.serializers import ModelSerializer
 
 from users.models import User
 
 
-class UserSerializer(ModelSerializer):
+class UserSerializer(CountryFieldMixin, ModelSerializer):
     """Сериализатор для просмотра и изменения профиля"""
+
     class Meta:
         model = User
         fields = ("id", "email", "phone_number", "avatar", "country", "tg_nickname", "tg_chat_id")
@@ -12,6 +14,7 @@ class UserSerializer(ModelSerializer):
 
 class UserCreateSerializer(ModelSerializer):
     """Сериализатор создания пользователя"""
+
     class Meta:
         model = User
         fields = (
@@ -29,3 +32,16 @@ class UserCreateSerializer(ModelSerializer):
         user.save()
 
         return user
+
+
+class UserViewSerializer(ModelSerializer):
+    """Сериализатор представления данных о пользователях."""
+
+    class Meta:
+        model = User
+        fields = (
+            "id",
+            "email",
+            "avatar",
+            "tg_nickname",
+        )

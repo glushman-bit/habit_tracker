@@ -1,17 +1,18 @@
-from dataclasses import field
-
 from rest_framework.exceptions import ValidationError
 
 
 class PleasantHabitValidator:
     """Проверка, что у приятной привычки не может быть вознаграждения или связанной привычки."""
+
     def __call__(self, attrs):
         is_pleasant = attrs.get('is_pleasant')
         reward = attrs.get('reward')
         related_habit = attrs.get('related_habit')
 
         if is_pleasant and (reward or related_habit):
-            raise ValidationError("У приятной привычки не может быть собственного вознаграждения или связанной привычки.")
+            raise ValidationError(
+                "У приятной привычки не может быть собственного вознаграждения или связанной привычки."
+            )
 
 
 class PeriodicityValidator:
@@ -22,15 +23,13 @@ class PeriodicityValidator:
 
     def __call__(self, attrs):
         periodicity = attrs.get(self.field)
-
         if periodicity and periodicity > 7:
-            raise ValidationError(
-                {self.field: "Нельзя выполнять привычку реже 1 раза в 7 дней."}
-            )
+            raise ValidationError({self.field: "Нельзя выполнять привычку реже 1 раза в 7 дней."})
 
 
 class DurationHabitValidator:
     """Проверка времени выполнения привычки."""
+
     def __init__(self, field):
         self.field = field
 
@@ -38,9 +37,7 @@ class DurationHabitValidator:
         duration = attrs.get(self.field)
 
         if duration and duration > 120:
-            raise ValidationError(
-                {self.field: "Время выполнения не может быть больше 120 секунд."}
-            )
+            raise ValidationError({self.field: "Время выполнения не может быть больше 120 секунд."})
 
 
 class RelatedHabitIsPleasantValidator:
@@ -63,6 +60,4 @@ class RewardAndRelatedHabitValidator:
         related_habit = attrs.get('related_habit')
 
         if reward and related_habit:
-            raise ValidationError(
-                "Нельзя выбрать вознаграждение и связанную привычку."
-            )
+            raise ValidationError("Нельзя выбрать вознаграждение и связанную привычку.")

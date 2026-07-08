@@ -1,10 +1,10 @@
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
 from habits.paginators import HabitPaginator
 from habits.permissions import IsOwner
-from habits.serializers import HabitSerializer, HabitPublicSerializer
+from habits.serializers import HabitPublicSerializer, HabitSerializer
 
 
 class HabitsListAPIView(ListAPIView):
@@ -58,6 +58,8 @@ class HabitDeleteAPIView(DestroyAPIView):
 
 
 class HabitPublicListAPIView(ListAPIView):
+    """Класс вывода списка публичных привычек."""
+
     queryset = Habit.objects.filter(is_public=True)
     serializer_class = HabitPublicSerializer
     permission_classes = [IsAuthenticated]

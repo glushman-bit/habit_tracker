@@ -9,6 +9,7 @@ from habits.services import send_telegram_message
 
 logger = logging.getLogger(__name__)
 
+
 @shared_task
 def send_habit_reminders():
     """Задача для периодической отправке уведомлений в телеграм."""

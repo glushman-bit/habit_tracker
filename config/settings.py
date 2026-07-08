@@ -1,8 +1,8 @@
-from pathlib import Path
 import os
+from datetime import timedelta
+from pathlib import Path
 
 from dotenv import load_dotenv
-from datetime import timedelta
 
 load_dotenv()
 
@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'phonenumber_field',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -39,7 +38,6 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'corsheaders',
     'drf_yasg',
-
     'habits',
     'users',
 ]
@@ -81,7 +79,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.AllowAny', # Доступ всем
-        'rest_framework.permissions.IsAuthenticated', # Доступ только авторизованным
+        'rest_framework.permissions.IsAuthenticated',  # Доступ только авторизованным
     ],
     # Пагинация на уровне проекта
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

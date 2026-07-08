@@ -1,9 +1,9 @@
-from rest_framework import viewsets, generics
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework import generics, viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from .permissions import IsProfile
-from .serializers import UserSerializer, UserCreateSerializer, UserViewSerializer
 from .models import User
+from .permissions import IsProfile
+from .serializers import UserCreateSerializer, UserSerializer, UserViewSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
