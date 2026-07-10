@@ -162,7 +162,7 @@ class HabitsTestsCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
-            response.json()['results'][0]['full_sentence'], "Я буду test_action_pleasant в 20:00 в test_place"
+            response.json()['results'][0]['full_sentence'], "Я буду test_action_pleasant в 20:00 test_place"
         )
 
 
