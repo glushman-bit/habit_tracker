@@ -90,7 +90,7 @@ jobs:
 
       - name: Push latest image
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/hw_8_kurs_b35:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/habits_tracker:latest
 
   deploy:
     needs: build
