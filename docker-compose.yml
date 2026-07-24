@@ -1,6 +1,7 @@
 services:
   web:
-    image: glushman/habit_tracker:latest
+    build: .
+    image: habit_tracker:latest
     command: sh -c 'python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000'
     volumes:
       - static_volume:/app/staticfiles
@@ -49,7 +50,7 @@ services:
       retries: 5
 
   celery:
-    image: glushman/hw_8_kurs_b35:latest
+    image: habit_tracker:latest
     command: celery -A config worker -l INFO
     depends_on:
       db:
@@ -61,7 +62,7 @@ services:
     restart: unless-stopped
 
   celery-beat:
-    image: glushman/hw_8_kurs_b35:latest
+    image: habit_tracker:latest
     command: celery -A config beat -l INFO
     depends_on:
       db:
