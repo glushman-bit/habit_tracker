@@ -23,6 +23,7 @@ requests = "^2.34.2"
 django-cors-headers = "^4.9.0"
 drf-yasg = "^1.21.15"
 psycopg = {extras = ["binary"], version = "^3.3.4"}
+gunicorn = "^26.0.0"
 
 
 [tool.poetry.group.lint.dependencies]
