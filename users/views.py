@@ -23,7 +23,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         """Переопределение сериалайзера для просмотра профиля пользователя.
-            Добавлена защита от ошибки построения схемы Swagger."""
+        Добавлена защита от ошибки построения схемы Swagger."""
 
         if getattr(self, 'swagger_fake_view', False):
             return UserSerializer
