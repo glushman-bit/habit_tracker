@@ -7,3 +7,5 @@ venv
 .venv
 staticfiles
 media
+htmlcov/
+index.html
