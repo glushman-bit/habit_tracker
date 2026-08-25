@@ -1,0 +1,11 @@
+.git
+.github
+.env
+*.pyc
+__pycache__
+venv
+.venv
+staticfiles
+media
+htmlcov/
+index.html
